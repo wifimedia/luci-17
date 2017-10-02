@@ -27,7 +27,7 @@
 		      (not self.novirtual or not net:is_virtual())
 		   then %>
 	<li style="padding:0.25em 0">
-		<input class="cbi-input-<%=self.widget or "radio"%>" data-update="click change"<%=
+		<input class="cbi-input-<%=self.widget or "radio"%>" onclick="cbi_d_update(this.id)" onchange="cbi_d_update(this.id)"<%=
 			attr("type", self.widget or "radio") ..
 			attr("id", cbid .. "." .. net:name()) ..
 			attr("name", cbid) .. attr("value", net:name()) ..
@@ -49,37 +49,6 @@
 	</li>
 	<% end end %>
 
-	<% if not self.nocreate then %>
-	<li style="padding:0.25em 0">
-		<input class="cbi-input-<%=self.widget or "radio"%>" data-update="click change"<%=attr("type", self.widget or "radio") .. attr("id", cbid .. "_new") .. attr("name", cbid) .. attr("value", "-") .. ifattr(not value and self.widget ~= "checkbox", "checked", "checked")%> /> &#160;
-		<%- if not self.widget or self.widget == "checkbox" or self.widget == "radio" then -%>
-			<label<%=attr("for", cbid .. "_new")%>></label>
-		<%- end -%>
-		<div style="padding:0.5em; display:inline">
-			<label<%=attr("for", cbid .. "_new")%>><em>
-				<%- if self.widget == "checkbox" then -%>
-					<%:create:%>
-				<%- else -%>
-					<%:unspecified -or- create:%>
-				<%- end -%>&#160;</em></label>
-			<input style="display:none" type="password" />
-			<input style="width:6em" type="text"<%=attr("name", cbid .. ".newnet")%> onfocus="document.getElementById('<%=cbid%>_new').checked=true" />
-		</div>
-	</li>
-	<% elseif self.widget ~= "checkbox" and self.unspecified then %>
-	<li style="padding:0.25em 0">
-		<input class="cbi-input-<%=self.widget or "radio"%>" data-update="click change"<%=
-			attr("type", self.widget or "radio") ..
-			attr("id", cbid .. "_uns") ..
-			attr("name", cbid) ..
-			attr("value", "") ..
-			ifattr(not value or #value == 0, "checked", "checked")
-		%> /> &#160;
-		<div style="padding:0.5em; display:inline">
-			<label<%=attr("for", cbid .. "_uns")%>><em><%:unspecified%></em></label>
-		</div>
-	</li>
-	<% end %>
 </ul>
 
 <%+cbi/valuefooter%>

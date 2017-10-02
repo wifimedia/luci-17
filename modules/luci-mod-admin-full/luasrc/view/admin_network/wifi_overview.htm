@@ -111,7 +111,7 @@
 	</div>
 <% end %>
 
-<script type="text/javascript" src="<%=resource%>/cbi.js"></script>
+<script type="text/javascript" src="<%=resource%>/cbi.js?v=git-17.232.21093-079f65a"></script>
 <script type="text/javascript">//<![CDATA[
 	var wifidevs = <%=luci.http.write_json(netdevs)%>;
 
@@ -213,9 +213,8 @@
 					var q = is_assoc ? p : -1;
 
 					var icon;
-					if (q < 0)
-						icon = "<%=resource%>/icons/signal-none.png";
-					else if (q == 0)
+					
+					if (q == 0)
 						icon = "<%=resource%>/icons/signal-0.png";
 					else if (q < 25)
 						icon = "<%=resource%>/icons/signal-0-25.png";

@@ -413,7 +413,8 @@ mode.override_values = true
 mode:value("ap", translate("Access Point"))
 mode:value("sta", translate("Client"))
 mode:value("adhoc", translate("Ad-Hoc"))
-
+mesh_id = s:taboption("general", Value, "mesh_id", translate("<abbr title=\"Basic Service Set Identifier\">MESH_ID</abbr>"))
+limit = s:taboption("general", Value, "maxassoc", translate("Connection Limit"))
 bssid = s:taboption("general", Value, "bssid", translate("<abbr title=\"Basic Service Set Identifier\">BSSID</abbr>"))
 
 network = s:taboption("general", Value, "network", translate("Network"),
@@ -459,11 +460,12 @@ end
 
 if hwtype == "mac80211" then
 	if fs.access("/usr/sbin/iw") then
-		mode:value("mesh", "802.11s")
+		mode:value("mesh", "Mesh")
+		mesh_id:depends({mode="mesh"})
 	end
 
-	mode:value("ahdemo", translate("Pseudo Ad-Hoc (ahdemo)"))
-	mode:value("monitor", translate("Monitor"))
+	--mode:value("ahdemo", translate("Pseudo Ad-Hoc (ahdemo)"))
+	--mode:value("monitor", translate("Monitor"))
 	bssid:depends({mode="adhoc"})
 	bssid:depends({mode="sta"})
 	bssid:depends({mode="sta-wds"})
@@ -509,7 +511,8 @@ if hwtype == "mac80211" then
 			return mode
 		end
 	end
-
+	isolate = s:taboption("general", Flag, "isolate", translate("Isolate"))
+	isolate:depends({mode="ap"})
 	hidden = s:taboption("general", Flag, "hidden", translate("Hide <abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"))
 	hidden:depends({mode="ap"})
 	hidden:depends({mode="ap-wds"})
@@ -908,14 +911,14 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 		translate("802.11r Fast Transition"),
 		translate("Enables fast roaming among access points that belong " ..
 			"to the same Mobility Domain"))
-	ieee80211r:depends({mode="ap", encryption="wpa"})
-	ieee80211r:depends({mode="ap", encryption="wpa2"})
-	ieee80211r:depends({mode="ap-wds", encryption="wpa"})
-	ieee80211r:depends({mode="ap-wds", encryption="wpa2"})
+	--ieee80211r:depends({mode="ap", encryption="wpa"})
+	--ieee80211r:depends({mode="ap", encryption="wpa2"})
+	--ieee80211r:depends({mode="ap-wds", encryption="wpa"})
+	--ieee80211r:depends({mode="ap-wds", encryption="wpa2"})
 	if has_80211r then
-		ieee80211r:depends({mode="ap", encryption="psk"})
+		--ieee80211r:depends({mode="ap", encryption="psk"})
 		ieee80211r:depends({mode="ap", encryption="psk2"})
-		ieee80211r:depends({mode="ap", encryption="psk-mixed"})
+		--ieee80211r:depends({mode="ap", encryption="psk-mixed"})
 	end
 	ieee80211r.rmempty = true
 
@@ -928,7 +931,7 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	nasid:depends({mode="ap-wds", encryption="wpa2"})
 	nasid:depends({ieee80211r="1"})
 	nasid.rmempty = true
-
+--[[
 	mobility_domain = s:taboption("encryption", Value, "mobility_domain",
 			translate("Mobility Domain"),
 			translate("4-character hexadecimal ID"))
@@ -964,13 +967,11 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	pmk_r1_push:depends({ieee80211r="1"})
 	pmk_r1_push.placeholder = "0"
 	pmk_r1_push.rmempty = true
-
+]]--
 	r0kh = s:taboption("encryption", DynamicList, "r0kh", translate("External R0 Key Holder List"),
 		translate("List of R0KHs in the same Mobility Domain. " ..
 			"<br />Format: MAC-address,NAS-Identifier,128-bit key as hex string. " ..
-			"<br />This list is used to map R0KH-ID (NAS Identifier) to a destination " ..
-			"MAC address when requesting PMK-R1 key from the R0KH that the STA " ..
-			"used during the Initial Mobility Domain Association."))
+			"<br />02:01:02:03:04:05,wifimedia,000102030405060708090a0b0c0d0e0f "))
 
 	r0kh:depends({ieee80211r="1"})
 	r0kh.rmempty = true
@@ -978,11 +979,19 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	r1kh = s:taboption("encryption", DynamicList, "r1kh", translate("External R1 Key Holder List"),
 		translate ("List of R1KHs in the same Mobility Domain. "..
 			"<br />Format: MAC-address,R1KH-ID as 6 octets with colons,128-bit key as hex string. "..
-			"<br />This list is used to map R1KH-ID to a destination MAC address " ..
-			"when sending PMK-R1 key from the R0KH. This is also the " ..
-			"list of authorized R1KHs in the MD that can request PMK-R1 keys."))
+			"<br />02:01:02:03:04:05,02:11:22:33:44:55,000102030405060708090a0b0c0d0e0f"))
 	r1kh:depends({ieee80211r="1"})
 	r1kh.rmempty = true
+	
+	ieee80211i = s:taboption("encryption", Flag, "rsn_preauth", "Fast Roaming RSN Preauth")
+	ieee80211i.rmempty = false
+	ieee80211i:depends({encryption="wpa2"})
+	ieee80211i:depends({encryption="psk2"})
+	ieee80211i:depends({encryption="wpa-mixed"})
+	ieee80211i:depends({encryption="psk-mixed"})
+	if ({encryption}) == "none" then
+		ieee80211i:value("0")
+	end
 	-- End of 802.11r options
 
 	eaptype = s:taboption("encryption", ListValue, "eap_type", translate("EAP-Method"))
@@ -1124,6 +1133,7 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 end
 
 -- ieee802.11w options
+--[[
 if hwtype == "mac80211" then
    local has_80211w = (os.execute("hostapd -v11w 2>/dev/null || hostapd -veap 2>/dev/null") == 0)
    if has_80211w then
@@ -1163,7 +1173,7 @@ if hwtype == "mac80211" then
 	retry_timeout.rmempty = true
    end
 end
-
+]]--
 if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	local wpasupplicant = fs.access("/usr/sbin/wpa_supplicant")
 	local hostcli = fs.access("/usr/sbin/hostapd_cli")

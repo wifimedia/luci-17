@@ -14,7 +14,7 @@ function index()
 	page.target  = firstchild()
 	page.title   = _("Administration")
 	page.order   = 10
-	page.sysauth = "root"
+	page.sysauth = {"root","admin"}
 	page.sysauth_authenticator = "htmlauth"
 	page.ucidata = true
 	page.index = true

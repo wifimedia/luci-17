@@ -10,9 +10,10 @@
 	local stat = require "luci.tools.status"
 	local ver = require "luci.version"
 
-	local has_ipv6 = fs.access("/proc/net/ipv6_route")
+	--local has_ipv6 = fs.access("/proc/net/ipv6_route")
 	local has_dhcp = fs.access("/etc/config/dhcp")
 	local has_wifi = ((fs.stat("/etc/config/wireless", "size") or 0) > 0)
+	local has_nds = fs.access("/etc/nodogsplash/nodogsplash.conf")
 
 	local sysinfo = luci.util.ubus("system", "info") or { }
 	local boardinfo = luci.util.ubus("system", "board") or { }
@@ -107,7 +108,7 @@
 
 <%+header%>
 
-<script type="text/javascript" src="<%=resource%>/cbi.js"></script>
+<script type="text/javascript" src="<%=resource%>/cbi.js?v=git-17.232.21093-079f65a"></script>
 <script type="text/javascript">//<![CDATA[
 	function progressbar(v, m)
 	{
@@ -683,10 +684,12 @@
 		<tr><td width="33%"><%:Hostname%></td><td><%=luci.sys.hostname() or "?"%></td></tr>
 		<tr><td width="33%"><%:Model%></td><td><%=pcdata(boardinfo.model or boardinfo.system or "?")%></td></tr>
 		<tr><td width="33%"><%:Firmware Version%></td><td>
-			<%=pcdata(ver.distname)%> <%=pcdata(ver.distversion)%> /
-			<%=pcdata(ver.luciname)%> (<%=pcdata(ver.luciversion)%>)
+			<%=pcdata(ver.distname)%> <%=pcdata(ver.distversion)%> 
 		</td></tr>
-		<tr><td width="33%"><%:Kernel Version%></td><td><%=unameinfo.release or "?"%></td></tr>
+		<% if has_nds then %>	
+		<tr><td width="33%"><%:Captive Portal ID:%></td><td><a><%=luci.sys.exec("ifconfig br-lan|grep HWaddr|awk '{print $5}' | sed 's/://g'")%></a></td></tr>
+		<% end %>
+                <tr><td width="33%"><%:Device ID:%></td><td><a><%=luci.sys.exec("cat /sys/class/ieee80211/phy0/macaddress | sed 's/:/-/g'|tr a-z A-Z")%></a></td></tr>
 		<tr><td width="33%"><%:Local Time%></td><td id="localtime">-</td></tr>
 		<tr><td width="33%"><%:Uptime%></td><td id="uptime">-</td></tr>
 		<tr><td width="33%"><%:Load Average%></td><td id="loadavg">-</td></tr>
@@ -753,7 +756,7 @@
 	</table>
 </fieldset>
 
-<fieldset class="cbi-section" style="display:none">
+<!--fieldset class="cbi-section" style="display:none">
 	<legend><%:DHCPv6 Leases%></legend>
 
 	<table class="cbi-section-table" id="lease6_status_table">
@@ -767,7 +770,7 @@
 			<td colspan="4"><em><br /><%:Collecting data...%></em></td>
 		</tr>
 	</table>
-</fieldset>
+</fieldset-->
 <% end %>
 
 <% if has_dsl then %>

@@ -4,7 +4,7 @@
 module("luci.controller.admin.servicectl", package.seeall)
 
 function index()
-	entry({"servicectl"}, alias("servicectl", "status")).sysauth = "root"
+	entry({"servicectl"}, alias("servicectl", "status")).sysauth = {"root","admin"}
 	entry({"servicectl", "status"}, call("action_status")).leaf = true
 	entry({"servicectl", "restart"}, post("action_restart")).leaf = true
 end

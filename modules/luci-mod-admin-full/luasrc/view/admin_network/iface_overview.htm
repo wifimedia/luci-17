@@ -30,7 +30,7 @@
 		end)
 -%>
 
-<script type="text/javascript" src="<%=resource%>/cbi.js"></script>
+<script type="text/javascript" src="<%=resource%>/cbi.js?v=git-17.232.21093-079f65a"></script>
 <script type="text/javascript">//<![CDATA[
 	function iface_shutdown(id, reconnect) {
 		if (!reconnect && !confirm(String.format('<%_Really shutdown interface "%s" ?\nYou might lose access to this device if you are connected via this interface.%>', id)))
@@ -243,12 +243,12 @@
 						<input type="button" class="cbi-button cbi-button-reload" style="width:100px" onclick="iface_shutdown('<%=net[1]%>', true)" title="<%:Reconnect this interface%>" value="<%:Connect%>" />
 						<input type="button" class="cbi-button cbi-button-reset" style="width:100px" onclick="iface_shutdown('<%=net[1]%>', false)" title="<%:Shutdown this interface%>" value="<%:Stop%>" />
 						<input type="button" class="cbi-button cbi-button-edit" style="width:100px" onclick="location.href='<%=url("admin/network/network", net[1])%>'" title="<%:Edit this interface%>" value="<%:Edit%>" id="<%=net[1]%>-ifc-edit" />
-						<input type="button" class="cbi-button cbi-button-remove" style="width:100px" onclick="iface_delete('<%=net[1]%>')" value="<%:Delete%>" />
+						<!--input type="button" class="cbi-button cbi-button-remove" style="width:100px" onclick="iface_delete('<%=net[1]%>')" value="<%:Delete%>" /-->
 					</td>
 				</tr>
 			<% end %>
 		</table>
 
-		<input type="button" class="cbi-button cbi-button-add" value="<%:Add new interface...%>" onclick="location.href='<%=url("admin/network/iface_add")%>'" />
+		<!--input type="button" class="cbi-button cbi-button-add" value="<%:Add new interface...%>" onclick="location.href='<%=url("admin/network/iface_add")%>'" /-->
 	</fieldset>
 </div>

@@ -155,7 +155,7 @@ if has_ntpd then
 	if m:formvalue("cbid.system._timeserver._enable") then
 		m.uci:section("system", "timeserver", "ntp",
 			{
-                	server = { "0.openwrt.pool.ntp.org", "1.openwrt.pool.ntp.org", "2.openwrt.pool.ntp.org", "3.openwrt.pool.ntp.org" }
+                	server = { "0.asia.pool.ntp.org", "1.asia.pool.ntp.org", "2.asia.pool.ntp.org", "3.asia.pool.ntp.org" }
 			}
 		)
 
@@ -210,14 +210,14 @@ if has_ntpd then
 		o = s:option(Flag, "enable_server", translate("Provide NTP server"))
 		o:depends("enable", "1")
 
-
+--[[
 		o = s:option(DynamicList, "server", translate("NTP server candidates"))
 		o.datatype = "host(0)"
 		o:depends("enable", "1")
 
 		-- retain server list even if disabled
 		function o.remove() end
-
+]]--
 	end
 end
 
