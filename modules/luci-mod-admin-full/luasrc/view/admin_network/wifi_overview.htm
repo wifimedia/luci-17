@@ -322,10 +322,10 @@
 							else
 								icon = "<%=resource%>/icons/signal-75-100.png";
 
-							tr.insertCell(-1).innerHTML = String.format(
-								'<span class="ifacebadge" title="%q"><img src="<%=resource%>/icons/wifi.png" /> %h</span>',
-								iw.device.name, iw.ifname
-							);
+							//tr.insertCell(-1).innerHTML = String.format(
+							//	'<span class="ifacebadge" title="%q"><img src="<%=resource%>/icons/wifi.png" /> %h</span>',
+							//	iw.device.name, iw.ifname
+							//);
 
 							tr.insertCell(-1).innerHTML = nowrap(String.format('%h', iw.ssid ? iw.ssid : '?'));
 							tr.insertCell(-1).innerHTML = assoclist[j].bssid;
@@ -394,7 +394,7 @@
 			<tr>
 				<td style="width:34px"><img src="<%=resource%>/icons/wifi_big_disabled.png" style="float:left; margin-right:10px" id="<%=dev:name()%>-iw-upstate" /></td>
 				<td colspan="2" style="text-align:left">
-					<big><strong><%=guess_wifi_hw(dev)%> (<%=dev:name()%>)</strong></big><br />
+					<big><strong>Wireless Controller</strong></big><br />
 					<span id="<%=dev:name()%>-iw-devinfo"></span>
 				</td>
 				<td style="width:310px;text-align:right">
@@ -450,7 +450,7 @@
 	<fieldset class="cbi-section">
 		<table class="cbi-section-table valign-middle" style="margin:10px" id="iw-assoclist">
 			<tr class="cbi-section-table-titles">
-				<th class="cbi-section-table-cell"></th>
+				<!--th class="cbi-section-table-cell"></th-->
 				<th class="cbi-section-table-cell"><%:SSID%></th>
 				<th class="cbi-section-table-cell"><%:MAC-Address%></th>
 				<th class="cbi-section-table-cell"><%:Host%></th>

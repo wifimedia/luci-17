@@ -464,7 +464,8 @@
 
 					td = tr.insertCell(-1);
 					td.width     = "33%";
-					td.innerHTML = dev.name;
+					//td.innerHTML = dev.name;
+					td.innerHTML = "Wireless Controller ";
 					td.style.verticalAlign = "top";
 
 					td = tr.insertCell(-1);
@@ -576,10 +577,10 @@
 					else
 						icon = "<%=resource%>/icons/signal-75-100.png";
 
-					tr.insertCell(-1).innerHTML = String.format(
-						'<span class="ifacebadge" title="%q"><img src="<%=resource%>/icons/wifi.png" /> %h</span>',
-						assoclist[i].radio, assoclist[i].ifname
-					);
+					//tr.insertCell(-1).innerHTML = String.format(
+					//	'<span class="ifacebadge" title="%q"><img src="<%=resource%>/icons/wifi.png" /> %h</span>',
+					//	assoclist[i].radio, assoclist[i].ifname
+					//);
 
 					tr.insertCell(-1).innerHTML = String.format(
 						'<a href="%s">%s</a>',
@@ -801,7 +802,7 @@
 
 	<table class="cbi-section-table valign-middle" id="wifi_assoc_table">
 		<tr class="cbi-section-table-titles">
-			<th class="cbi-section-table-cell">&#160;</th>
+			<!--th class="cbi-section-table-cell">&#160;</th-->
 			<th class="cbi-section-table-cell"><%:Network%></th>
 			<th class="cbi-section-table-cell"><%:MAC-Address%></th>
 			<th class="cbi-section-table-cell"><%:Host%></th>
