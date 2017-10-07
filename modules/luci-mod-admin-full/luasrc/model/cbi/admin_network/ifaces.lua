@@ -442,7 +442,7 @@ if has_dnsmasq and net:proto() == "static" then
 		local ltime = s:taboption("general", Value, "leasetime", translate("Lease time"),
 			translate("Expiry time of leased addresses, minimum is 2 minutes (<code>2m</code>)."))
 		ltime.rmempty = true
-		ltime.default = "12h"
+		ltime.default = "1h"
 
 		local dd = s:taboption("advanced", Flag, "dynamicdhcp",
 			translate("Dynamic <abbr title=\"Dynamic Host Configuration Protocol\">DHCP</abbr>"),
