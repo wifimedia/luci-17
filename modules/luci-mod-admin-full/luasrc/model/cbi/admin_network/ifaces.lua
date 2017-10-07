@@ -474,7 +474,7 @@ if has_dnsmasq and net:proto() == "static" then
 				n:depends("ignore", "")
 			end
 		end
-
+--[[
 		o = s:taboption("ipv6", ListValue, "ra", translate("Router Advertisement-Service"))
 		o:value("", translate("disabled"))
 		o:value("server", translate("server mode"))
@@ -508,7 +508,7 @@ if has_dnsmasq and net:proto() == "static" then
 
 		s:taboption("ipv6", DynamicList, "dns", translate("Announced DNS servers"))
 		s:taboption("ipv6", DynamicList, "domain", translate("Announced DNS domains"))
-
+]]--
 	else
 		m2 = nil
 	end
