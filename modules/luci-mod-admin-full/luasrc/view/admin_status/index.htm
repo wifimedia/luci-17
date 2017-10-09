@@ -602,7 +602,7 @@
 						tr.insertCell(-1).innerHTML = '?';
 
 					tr.insertCell(-1).innerHTML = String.format(
-						'<span class="ifacebadge" title="<%:Signal%>: %d <%:dBm%> / <%:Noise%>: %d <%:dBm%> / <%:SNR%>: %d"><img src="%s" /> %d / %d <%:dBm%></span>',
+						'<span class="ifacebadge" title="<%:Signal%>: %d <%:dBm%> / <%:Noise%>: %d <%:dBm%> / <%:SNR%>: %d"><img src="%s" /> %d  <%:dBm%></span>',
 						assoclist[i].signal, assoclist[i].noise, assoclist[i].signal - assoclist[i].noise,
 						icon,
 						assoclist[i].signal, assoclist[i].noise
@@ -806,7 +806,7 @@
 			<th class="cbi-section-table-cell"><%:Network%></th>
 			<th class="cbi-section-table-cell"><%:MAC-Address%></th>
 			<th class="cbi-section-table-cell"><%:Host%></th>
-			<th class="cbi-section-table-cell"><%:Signal%> / <%:Noise%></th>
+			<th class="cbi-section-table-cell"><%:Signal%> </th>
 			<th class="cbi-section-table-cell"><%:RX Rate%> / <%:TX Rate%></th>
 		</tr>
 		<tr class="cbi-section-table-row">
