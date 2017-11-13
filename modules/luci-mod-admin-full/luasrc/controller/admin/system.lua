@@ -31,6 +31,7 @@ function index()
 		entry({"admin", "system", "leds"}, cbi("admin_system/leds"), _("<abbr title=\"Light Emitting Diode\">LED</abbr> Configuration"), 60)
 	end
 ]]--
+	entry({"admin", "system", "reset_all"}, cbi("admin_system/reset_all"), _("Reset Default"), 68)
 	entry({"admin", "system", "flashops"}, call("action_flashops"), _("Flash Firmware"), 70)
 	entry({"admin", "system", "flashops", "reset"}, post("action_reset"))
 	entry({"admin", "system", "flashops", "backup"}, post("action_backup"))
