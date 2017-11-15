@@ -919,7 +919,7 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	end
 	ieee80211r.rmempty = true
 
-	nasid = s:taboption("encryption", Value, "nasid","NASID")
+	nasid = s:taboption("encryption", Value, "nasid","Local_ID")
 	nasid:depends({mode="ap", encryption="wpa"})
 	nasid:depends({mode="ap", encryption="wpa2"})
 	nasid:depends({mode="ap-wds", encryption="wpa"})
