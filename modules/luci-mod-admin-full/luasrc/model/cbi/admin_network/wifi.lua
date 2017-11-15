@@ -247,7 +247,7 @@ if hwtype == "mac80211" then
 	s:taboption("advanced", Value, "rts", translate("RTS/CTS Threshold"))
 end
 
-
+--[[
 ------------------- Madwifi Device ------------------
 
 if hwtype == "atheros" then
@@ -391,7 +391,7 @@ if hwtype == "prism2" then
 	s:taboption("advanced", Value, "rxantenna", translate("Receiver Antenna"))
 end
 
-
+]]--
 ----------------------- Interface -----------------------
 
 s = m:section(NamedSection, wnet.sid, "wifi-iface", translate("Interface Configuration"))
@@ -526,7 +526,7 @@ if hwtype == "mac80211" then
 	ifname.optional = true
 end
 
-
+--[[
 
 -------------------- Madwifi Interface ----------------------
 
@@ -671,7 +671,7 @@ if hwtype == "prism2" then
 	s:taboption("advanced", Value, "rts", translate("RTS/CTS Threshold"))
 end
 
-
+]]--
 ------------------- WiFI-Encryption -------------------
 
 encr = s:taboption("encryption", ListValue, "encryption", translate("Encryption"))
