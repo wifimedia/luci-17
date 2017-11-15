@@ -968,7 +968,7 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	r0kh:depends({ieee80211r="1"})
 	r0kh.rmempty = true
 
-	r1kh = s:taboption("encryption", DynamicList, "r1kh","ER1K"
+	r1kh = s:taboption("encryption", DynamicList, "r1kh","ER1K")
 	r1kh:depends({ieee80211r="1"})
 	r1kh.rmempty = true
 	
