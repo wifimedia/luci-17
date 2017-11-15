@@ -907,10 +907,7 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	-- Probe 802.11r support (and EAP support as a proxy for Openwrt)
 	local has_80211r = (os.execute("hostapd -v11r 2>/dev/null || hostapd -veap 2>/dev/null") == 0)
 
-	ieee80211r = s:taboption("encryption", Flag, "ieee80211r",
-		translate("802.11r Fast Transition"),
-		translate("Enables fast roaming among access points that belong " ..
-			"to the same Mobility Domain"))
+	ieee80211r = s:taboption("encryption", Flag, "ieee80211r","Fast BSS Transition")
 	--ieee80211r:depends({mode="ap", encryption="wpa"})
 	--ieee80211r:depends({mode="ap", encryption="wpa2"})
 	--ieee80211r:depends({mode="ap-wds", encryption="wpa"})
@@ -922,9 +919,7 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	end
 	ieee80211r.rmempty = true
 
-	nasid = s:taboption("encryption", Value, "nasid", translate("NAS ID"),
-		translate("Used for two different purposes: RADIUS NAS ID and " ..
-			"802.11r R0KH-ID. Not needed with normal WPA(2)-PSK."))
+	nasid = s:taboption("encryption", Value, "nasid","NASID")
 	nasid:depends({mode="ap", encryption="wpa"})
 	nasid:depends({mode="ap", encryption="wpa2"})
 	nasid:depends({mode="ap-wds", encryption="wpa"})
@@ -968,22 +963,16 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	pmk_r1_push.placeholder = "0"
 	pmk_r1_push.rmempty = true
 ]]--
-	r0kh = s:taboption("encryption", DynamicList, "r0kh", translate("External R0 Key Holder List"),
-		translate("List of R0KHs in the same Mobility Domain. " ..
-			"<br />Format: MAC-address,NAS-Identifier,128-bit key as hex string. " ..
-			"<br />02:01:02:03:04:05,wifimedia,000102030405060708090a0b0c0d0e0f "))
+	r0kh = s:taboption("encryption", DynamicList, "r0kh","ER0K")
 
 	r0kh:depends({ieee80211r="1"})
 	r0kh.rmempty = true
 
-	r1kh = s:taboption("encryption", DynamicList, "r1kh", translate("External R1 Key Holder List"),
-		translate ("List of R1KHs in the same Mobility Domain. "..
-			"<br />Format: MAC-address,R1KH-ID as 6 octets with colons,128-bit key as hex string. "..
-			"<br />02:01:02:03:04:05,02:11:22:33:44:55,000102030405060708090a0b0c0d0e0f"))
+	r1kh = s:taboption("encryption", DynamicList, "r1kh","ER1K"
 	r1kh:depends({ieee80211r="1"})
 	r1kh.rmempty = true
 	
-	ieee80211i = s:taboption("encryption", Flag, "rsn_preauth", "Fast Roaming RSN Preauth")
+	ieee80211i = s:taboption("encryption", Flag, "rsn_preauth", "Fast Roaming 802.11i")
 	ieee80211i.rmempty = false
 	ieee80211i:depends({encryption="wpa2"})
 	ieee80211i:depends({encryption="psk2"})
