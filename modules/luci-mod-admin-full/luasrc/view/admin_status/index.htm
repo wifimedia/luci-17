@@ -688,7 +688,7 @@
 			<%=pcdata(ver.distname)%> <%=pcdata(ver.distversion)%> 
 		</td></tr>
 		<% if has_nds then %>	
-		<tr><td width="33%"><%:Captive Portal ID:%></td><td><a><%=luci.sys.exec("ifconfig br-lan | grep 'HWaddr' | awk '{ print $5 }'| sed 's/://g' | tr a-z A-Z")%></a></td></tr>
+		<tr><td width="33%"><%:Portal ID:%></td><td><a><%=luci.sys.exec("ifconfig br-lan | grep 'HWaddr' | awk '{ print $5 }'| sed 's/://g' | tr a-z A-Z")%></a></td></tr>
 		<% end %>
         <!--tr><td width="33%"><%:Device ID:%></td><td><a><%=luci.sys.exec("cat /sys/class/ieee80211/phy0/macaddress | sed 's/:/-/g'|tr a-z A-Z")%></a></td></tr-->
 		<tr><td width="33%"><%:Local Time%></td><td id="localtime">-</td></tr>
