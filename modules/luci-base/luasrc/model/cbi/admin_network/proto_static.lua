@@ -35,7 +35,7 @@ dns = section:taboption("general", DynamicList, "dns",
 dns.datatype = "ipaddr"
 dns.cast     = "string"
 
-
+--[[
 if luci.model.network:has_ipv6() then
 
 	local ip6assign = section:taboption("general", Value, "ip6assign", translate("IPv6 assignment length"),
@@ -73,7 +73,7 @@ if luci.model.network:has_ipv6() then
 	ip6ifaceid.rmempty = true
 
 end
-
+]]--
 
 luci.tools.proto.opt_macaddr(section, ifc, translate("Override MAC address"))
 
