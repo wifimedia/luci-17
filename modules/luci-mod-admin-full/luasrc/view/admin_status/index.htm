@@ -14,6 +14,7 @@
 	local has_dhcp = fs.access("/etc/config/dhcp")
 	local has_wifi = ((fs.stat("/etc/config/wireless", "size") or 0) > 0)
 	local has_nds = fs.access("/etc/nodogsplash/nodogsplash.conf")
+	local has_ft = fs.access("/etc/FT")
 
 	local sysinfo = luci.util.ubus("system", "info") or { }
 	local boardinfo = luci.util.ubus("system", "board") or { }
@@ -694,7 +695,9 @@
 		<tr><td width="33%"><%:Local Time%></td><td id="localtime">-</td></tr>
 		<tr><td width="33%"><%:Uptime%></td><td id="uptime">-</td></tr>
 		<!--tr><td width="33%"><%:Load Average%></td><td id="loadavg">-</td></tr-->
+		<% if has_ft then %>
 		<tr><td width="33%"><%:Fast Roaming%></td><td><a><%=luci.sys.exec("cat /etc/FT")%></a></td></tr>
+		<% end %>
 	</table>
 </fieldset>
 
