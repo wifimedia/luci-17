@@ -108,7 +108,7 @@ o:value(9, translate("Warning"))
 --
 -- Langauge & Style
 --
-
+--[[
 o = s:taboption("language", ListValue, "_lang", translate("Language"))
 o:value("auto")
 
@@ -143,7 +143,7 @@ end
 function o.write(self, section, value)
 	m.uci:set("luci", "main", "mediaurlbase", value)
 end
-
+]]--
 
 --
 -- NTP
