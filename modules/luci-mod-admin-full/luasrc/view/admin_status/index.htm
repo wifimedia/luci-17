@@ -590,16 +590,16 @@
 
 					tr.insertCell(-1).innerHTML = assoclist[i].bssid;
 
-					var host = hosts[assoclist[i].bssid];
-					if (host)
-						tr.insertCell(-1).innerHTML = String.format(
-							'<div style="max-width:200px;overflow:hidden;text-overflow:ellipsis">%s</div>',
-							((host.name && (host.ipv4 || host.ipv6))
-								? '%h (%s)'.format(host.name, host.ipv4 || host.ipv6)
-								: '%h'.format(host.name || host.ipv4 || host.ipv6)).nobr()
-						);
-					else
-						tr.insertCell(-1).innerHTML = '?';
+					//var host = hosts[assoclist[i].bssid];
+					//if (host)
+					//	tr.insertCell(-1).innerHTML = String.format(
+					//		'<div style="max-width:200px;overflow:hidden;text-overflow:ellipsis">%s</div>',
+					//		((host.name && (host.ipv4 || host.ipv6))
+					//			? '%h (%s)'.format(host.name, host.ipv4 || host.ipv6)
+					//			: '%h'.format(host.name || host.ipv4 || host.ipv6)).nobr()
+					//	);
+					//else
+					//	tr.insertCell(-1).innerHTML = '?';
 
 					tr.insertCell(-1).innerHTML = String.format(
 						'<span class="ifacebadge" title="<%:Signal%>: %d <%:dBm%> / <%:Noise%>: %d <%:dBm%> / <%:SNR%>: %d"><img src="%s" /> %d / %d <%:dBm%></span>',
@@ -804,9 +804,9 @@
 	<table class="cbi-section-table valign-middle" id="wifi_assoc_table">
 		<tr class="cbi-section-table-titles">
 			<!--th class="cbi-section-table-cell">&#160;</th-->
-			<th class="cbi-section-table-cell"><%:Network%></th>
+			<th class="cbi-section-table-cell"><%:SSID%></th>
 			<th class="cbi-section-table-cell"><%:MAC-Address%></th>
-			<th class="cbi-section-table-cell"><%:Host%></th>
+			<!--th class="cbi-section-table-cell"><%:Host%></th-->
 			<th class="cbi-section-table-cell"><%:Signal%> / <%:Noise%></th>
 			<th class="cbi-section-table-cell"><%:RX Rate%> / <%:TX Rate%></th>
 		</tr>
