@@ -963,12 +963,12 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	pmk_r1_push.placeholder = "0"
 	pmk_r1_push.rmempty = true
 ]]--
-	r0kh = s:taboption("encryption", DynamicList, "r0kh","R0KHs","External R0 Key Holder List")
+	r0kh = s:taboption("encryption", DynamicList, "r0kh","R0KHs","External R0 Key Holder")
 
 	r0kh:depends({ieee80211r="1"})
 	r0kh.rmempty = true
 
-	r1kh = s:taboption("encryption", DynamicList, "r1kh","R1KHs","External R1 Key Holder List")
+	r1kh = s:taboption("encryption", DynamicList, "r1kh","R1KHs","External R1 Key Holder")
 	r1kh:depends({ieee80211r="1"})
 	r1kh.rmempty = true
 	
