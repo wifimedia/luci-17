@@ -147,6 +147,9 @@ end
 ---
 ---Watchdog Timer
 ---
+s1 = m:section(TypedSection, "watchcat", translate("Watchdog Timer"))
+s1.anonymous = true
+s1.addremove = false
 s1:tab("watchdog",  translate("Watchdog Timer"))
 wcht = s1:taboption( "watchdog",ListValue, "period", "Period","Default  30s")
 wcht.default = "30"
