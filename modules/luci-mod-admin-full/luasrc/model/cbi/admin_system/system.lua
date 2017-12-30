@@ -230,11 +230,11 @@ if has_ntpd then
 			end
 		end
 
-
+--[[
 		o = s:option(Flag, "enable_server", translate("Provide NTP server"))
 		o:depends("enable", "1")
 
---[[
+
 		o = s:option(DynamicList, "server", translate("NTP server candidates"))
 		o.datatype = "host(0)"
 		o:depends("enable", "1")
