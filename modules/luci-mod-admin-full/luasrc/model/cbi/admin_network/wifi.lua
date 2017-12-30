@@ -908,10 +908,10 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	local has_80211r = (os.execute("hostapd -v11r 2>/dev/null || hostapd -veap 2>/dev/null") == 0)
 
 	ieee80211r = s:taboption("encryption", Flag, "ieee80211r","Fast BSS Transition")
-		ieee80211r:depends({mode="ap", encryption="wpa"})
-		ieee80211r:depends({mode="ap", encryption="wpa2"})
-		ieee80211r:depends({mode="ap-wds", encryption="wpa"})
-		ieee80211r:depends({mode="ap-wds", encryption="wpa2"})
+	--ieee80211r:depends({mode="ap", encryption="wpa"})
+	--ieee80211r:depends({mode="ap", encryption="wpa2"})
+	--ieee80211r:depends({mode="ap-wds", encryption="wpa"})
+	--ieee80211r:depends({mode="ap-wds", encryption="wpa2"})
 	if has_80211r then
 		ieee80211r:depends({mode="ap", encryption="psk"})
 		ieee80211r:depends({mode="ap", encryption="psk2"})
