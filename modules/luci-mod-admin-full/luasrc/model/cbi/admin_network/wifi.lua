@@ -913,12 +913,12 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	--ieee80211r:depends({mode="ap-wds", encryption="wpa"})
 	--ieee80211r:depends({mode="ap-wds", encryption="wpa2"})
 	if has_80211r then
-		ieee80211r:depends({mode="ap", encryption="psk"})
+		--ieee80211r:depends({mode="ap", encryption="psk"})
 		ieee80211r:depends({mode="ap", encryption="psk2"})
-		ieee80211r:depends({mode="ap", encryption="psk-mixed"})
-		ieee80211r:depends({mode="ap-wds", encryption="psk"})
+		--ieee80211r:depends({mode="ap", encryption="psk-mixed"})
+		--ieee80211r:depends({mode="ap-wds", encryption="psk"})
 		ieee80211r:depends({mode="ap-wds", encryption="psk2"})
-		ieee80211r:depends({mode="ap-wds", encryption="psk-mixed"})
+		--ieee80211r:depends({mode="ap-wds", encryption="psk-mixed"})
 	end
 	ieee80211r.rmempty = true
 
