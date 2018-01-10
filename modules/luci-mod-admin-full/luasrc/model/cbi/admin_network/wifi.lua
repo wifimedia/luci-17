@@ -922,7 +922,7 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	end
 	ieee80211r.rmempty = true
 
-	nasid = s:taboption("encryption", Value, "nasid","NASID","Used for 802.11r R0KH-ID")
+	nasid = s:taboption("encryption", Value, "nasid","NASID","Radius,802.11r R0KH-ID")
 	nasid:depends({mode="ap", encryption="wpa"})
 	nasid:depends({mode="ap", encryption="wpa2"})
 	nasid:depends({mode="ap-wds", encryption="wpa"})
@@ -968,8 +968,7 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	ft_protocol.rmempty = true
 
 	ft_psk_generate_local = s:taboption("encryption", Flag, "ft_psk_generate_local",
-		translate("Generate PMK locally"),
-		translate("When using a PSK, the PMK can be generated locally without inter AP communications"))
+		translate("PMKL"))
 	ft_psk_generate_local:depends({ieee80211r="1"})
 	
 --[[	
@@ -978,12 +977,12 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	pmk_r1_push.placeholder = "0"
 	pmk_r1_push.rmempty = true
 ]]--
-	r0kh = s:taboption("encryption", DynamicList, "r0kh","R0KHs","External R0 Key Holder")
+	r0kh = s:taboption("encryption", DynamicList, "r0kh","R0","External R0")
 
 	r0kh:depends({ieee80211r="1"})
 	r0kh.rmempty = true
 
-	r1kh = s:taboption("encryption", DynamicList, "r1kh","R1KHs","External R1 Key Holder")
+	r1kh = s:taboption("encryption", DynamicList, "r1kh","R1","External R1")
 	r1kh:depends({ieee80211r="1"})
 	r1kh.rmempty = true
 	
