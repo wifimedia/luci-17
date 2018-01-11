@@ -986,7 +986,7 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	r1kh:depends({ieee80211r="1"})
 	r1kh.rmempty = true
 	
-	ieee80211i = s:taboption("encryption", Flag, "rsn_preauth", "Fast Roaming")
+	ieee80211i = s:taboption("encryption", Flag, "rsn_preauth", "Fast Roaming OKC")
 	ieee80211i.rmempty = false
 	ieee80211i:depends({encryption="wpa2"})
 	ieee80211i:depends({encryption="psk2"})
