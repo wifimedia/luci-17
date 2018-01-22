@@ -28,7 +28,7 @@
 %>
                 </div>
                 <footer class="mobile-hide">
-                    <a href="https://google.com.vn">FW: <%= ver.distversion %> <br/>Build date: <%=luci.sys.exec("uci get wifimedia.@builddate[0].date")%>
+                    <a href="https://google.com.vn">Fw: <%= ver.distversion %> <br/>Build date: <%=luci.sys.exec("uci get wifimedia.@builddate[0].date")%>
 						<br/>APID: <%=luci.sys.exec("cat /sys/class/ieee80211/phy0/macaddress | sed 's/:/-/g' | tr a-z A-Z")%>
 					</a>
                     <% if #categories > 1 then %>
