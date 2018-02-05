@@ -916,10 +916,13 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 		--ieee80211r:depends({mode="ap", encryption="psk"})
 		ieee80211r:depends({mode="ap", encryption="psk2"})
 		--ieee80211r:depends({mode="ap", encryption="psk-mixed"})
+		--ieee80211r:depends({mode="ap-wds", encryption="psk"})
+		ieee80211r:depends({mode="ap-wds", encryption="psk2"})
+		--ieee80211r:depends({mode="ap-wds", encryption="psk-mixed"})
 	end
 	ieee80211r.rmempty = true
 
-	nasid = s:taboption("encryption", Value, "nasid","NASID","Used for 802.11r R0KH-ID")
+	nasid = s:taboption("encryption", Value, "nasid","NASID","Radius,802.11r R0KH-ID")
 	nasid:depends({mode="ap", encryption="wpa"})
 	nasid:depends({mode="ap", encryption="wpa2"})
 	nasid:depends({mode="ap-wds", encryption="wpa"})
@@ -957,22 +960,33 @@ if hwtype == "atheros" or hwtype == "mac80211" or hwtype == "prism2" then
 	reassociation_deadline.placeholder = "1000"
 	reassociation_deadline.datatype = "range(1000,65535)"
 	reassociation_deadline.rmempty = true
+]]--
+	ft_protocol = s:taboption("encryption", ListValue, "ft_over_ds", translate("FT protocol"))
+	ft_protocol:depends({ieee80211r="1"})
+	ft_protocol:value("0", translatef("FT over the Air"))
+	ft_protocol:value("1", translatef("FT over DS"))
+	ft_protocol.rmempty = true
 
+	ft_psk_generate_local = s:taboption("encryption", Flag, "ft_psk_generate_local",
+		translate("PMKL"))
+	ft_psk_generate_local:depends({ieee80211r="1"})
+	
+--[[	
 	pmk_r1_push = s:taboption("encryption", Flag, "pmk_r1_push", translate("PMK R1 Push"))
 	pmk_r1_push:depends({ieee80211r="1"})
 	pmk_r1_push.placeholder = "0"
 	pmk_r1_push.rmempty = true
 ]]--
-	r0kh = s:taboption("encryption", DynamicList, "r0kh","R0KHs","External R0 Key Holder")
+	r0kh = s:taboption("encryption", DynamicList, "r0kh","R0","External R0")
 
 	r0kh:depends({ieee80211r="1"})
 	r0kh.rmempty = true
 
-	r1kh = s:taboption("encryption", DynamicList, "r1kh","R1KHs","External R1 Key Holder")
+	r1kh = s:taboption("encryption", DynamicList, "r1kh","R1","External R1")
 	r1kh:depends({ieee80211r="1"})
 	r1kh.rmempty = true
 	
-	ieee80211i = s:taboption("encryption", Flag, "rsn_preauth", "Fast Roaming")
+	ieee80211i = s:taboption("encryption", Flag, "rsn_preauth", "Fast Roaming OKC")
 	ieee80211i.rmempty = false
 	ieee80211i:depends({encryption="wpa2"})
 	ieee80211i:depends({encryption="psk2"})
