@@ -14,7 +14,9 @@
 	local categories = disp.node_childs(tree)
 %>
    <footer>
-    <a href="https://github.com/openwrt/luci">WIFI (<%= ver.luciversion %>)</a> / <%= ver.distversion %>
+    <a href="https://google.com.vn">Fw: <%= ver.distversion %> <br/>Build date: <%=luci.sys.exec("uci get wifimedia.@builddate[0].date")%>
+		<br/>APID: <%=luci.sys.exec("cat /sys/class/ieee80211/phy0/macaddress | sed 's/:/-/g' | tr a-z A-Z")%>
+	</a>
     <% if #categories > 1 then %>
      <ul class="breadcrumb pull-right" id="modemenu">
 	    <% for i, r in ipairs(categories) do %>
