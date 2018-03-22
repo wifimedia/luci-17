@@ -122,12 +122,8 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="msapplication-TileColor" content="#0099CC">
 
-    <meta name="application-name" content="<%=striptags( (boardinfo.hostname or "?") ) %> - LuCI">
-    <meta name="apple-mobile-web-app-title" content="<%=striptags( (boardinfo.hostname or "?") ) %> - LuCI">
-    <meta name="msapplication-TileImage" content="<%=media%>/logo.png"/>
-    <link rel="icon" href="<%=media%>/logo.png" sizes="144x144">
-    <link rel="apple-touch-icon-precomposed" href="<%=media%>/logo.png" sizes="144x144">
-
+    <meta name="application-name" content="<%=striptags( (boardinfo.hostname or "?") ) %>">
+    <meta name="apple-mobile-web-app-title" content="<%=striptags( (boardinfo.hostname or "?") ) %>">
     <link rel="stylesheet" href="<%=media%>/css/style.css">
     <% if node and node.css then %>
         <link rel="stylesheet" href="<%=resource%>/<%=node.css%>">
