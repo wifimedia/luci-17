@@ -11,7 +11,7 @@ LUCI_BASENAME:=luci
 
 LUCI_TITLE:=Standard OpenWrt set including full admin with ppp support and the default Bootstrap theme
 LUCI_DEPENDS:= \
-	+uhttpd +uhttpd-mod-ubus +luci-mod-admin-full +luci-theme-material \
+	+uhttpd +uhttpd-mod-ubus +luci-mod-admin-full \
 	+luci-app-firewall +libiwinfo-lua
 
 include ../../luci.mk
