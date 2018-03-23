@@ -61,6 +61,7 @@ html, body {
     padding: 0px;
     height: 100%;
     font-family: TimesNewRoman, serif;
+	font-size: 1.2rem;
 }
 
 select {
