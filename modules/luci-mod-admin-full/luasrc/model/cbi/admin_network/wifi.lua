@@ -721,6 +721,7 @@ if hwtype == "mac80211" or hwtype == "prism2" then
 	
 	--For 802.11i support
 	ieee80211i = s:taboption("encryption", Flag, "rsn_preauth", "Fast Roaming OKC")
+	--ieee80211i:depends({rsn_preauth="1", ieee80211r=""})
 	ieee80211i.rmempty = false
 	ieee80211i:depends({encryption="wpa2"})
 	ieee80211i:depends({encryption="psk2"})
