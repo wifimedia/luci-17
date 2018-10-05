@@ -878,7 +878,7 @@ if hwtype == "mac80211" then
 			translate("802.11w Management Frame Protection"),
 			translate("Requires the 'full' version of wpad/hostapd " ..
 				"and support from the wifi driver <br />(as of Feb 2017: " ..
-				"ath9k and ath10k, in LEDE also mwlwifi and mt76)"))
+				"ath9k and ath10k)"))
 		ieee80211w.default = ""
 		ieee80211w.rmempty = true
 		ieee80211w:value("", translate("Disabled (default)"))
