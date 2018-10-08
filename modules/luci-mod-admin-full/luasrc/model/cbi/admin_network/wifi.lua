@@ -689,6 +689,7 @@ if hwtype == "mac80211" or hwtype == "prism2" then
 		translate("Generate PMK locally"),
 		translate("When using a PSK, the PMK can be generated locally without inter AP communications"))
 	ft_psk_generate_local:depends({ieee80211r="1"})
+	ft_psk_generate_local.rmempty = false
 --[[
 	r0_key_lifetime = s:taboption("encryption", Value, "r0_key_lifetime",
 			translate("R0 Key Lifetime"), translate("minutes"))
