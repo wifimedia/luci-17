@@ -338,7 +338,9 @@ if hwtype == "mac80211" then
 	bssid:depends({mode="adhoc"})
 	bssid:depends({mode="sta"})
 	bssid:depends({mode="sta-wds"})
-
+	
+	limit = s:taboption("general", Value, "maxassoc", translate("Connection Limit"))
+	
 	mp = s:taboption("macfilter", ListValue, "macfilter", translate("MAC-Address Filter"))
 	mp:depends({mode="ap"})
 	mp:depends({mode="ap-wds"})
