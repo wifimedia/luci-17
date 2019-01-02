@@ -141,7 +141,7 @@
 <header>
 	<div class="container">
 		<span class="showSide"></span>
-		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA</a>
+		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA Active:<%=luci.sys.exec("cat /etc/opt/license/status | cut -c 10,9,8,7,6,5,4,3,2,1")%></a>
 		<div class="pull-right">
 		<%
 		-- calculate the number of unsaved changes
