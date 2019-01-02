@@ -39,7 +39,7 @@
 	local node = disp.context.dispatched
 
 	local categories = disp.node_childs(tree)
-
+	local has_license = fs.access("/etc/opt/first_time.txt")
 	local c = tree
 	local i, r
 
@@ -141,7 +141,7 @@
 <header>
 	<div class="container">
 		<span class="showSide"></span>
-		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA Active:<%=luci.sys.exec("cat /etc/opt/license/status")%></a>
+		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA <% if has_license then %> | Active:<%=luci.sys.exec("cat /etc/opt/license/status")%> <% end %></a>
 		<div class="pull-right">
 		<%
 		-- calculate the number of unsaved changes
