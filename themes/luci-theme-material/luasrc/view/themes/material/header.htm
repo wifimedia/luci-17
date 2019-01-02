@@ -39,7 +39,11 @@
 	local node = disp.context.dispatched
 
 	local categories = disp.node_childs(tree)
+	
 	local has_license = fs.access("/etc/opt/first_time.txt")
+	local wfm_lcs = fs.access("/etc/opt/wfm_lcs")
+	local wan_ip= luci.util.exec("uci get network.wan.ipaddr")
+	
 	local c = tree
 	local i, r
 
@@ -141,7 +145,7 @@
 <header>
 	<div class="container">
 		<span class="showSide"></span>
-		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA <% if has_license then %> | Active:<%=luci.sys.exec("cat /etc/opt/license/status")%> <% end %></a>
+		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA<small-caps> | WAN:<%=wan_ip%><% if wfm_lcs then %> | Active:<%=luci.sys.exec("cat /etc/opt/license/status")%><%else %> | Active:<%=luci.sys.exec("cat /etc/opt/license/status | cut -c 10,9,8,7,6,5,4,3,2,1")%><% end %><small-caps></a>
 		<div class="pull-right">
 		<%
 		-- calculate the number of unsaved changes
