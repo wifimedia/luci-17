@@ -24,7 +24,7 @@
 	local util = require "luci.util"
 	local http = require "luci.http"
 	local disp = require "luci.dispatcher"
-
+	local fs = require "nixio.fs"
 	local boardinfo = util.ubus("system", "board")
 
 	local request  = disp.context.path
