@@ -145,7 +145,7 @@
 <header>
 	<div class="container">
 		<span class="showSide"></span>
-		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA<small-caps> | WAN:<%=wan_ip%><% if wfm_lcs then %> | Active:<%=luci.sys.exec("cat /etc/opt/license/status")%><%else %> | Active:<%=luci.sys.exec("cat /etc/opt/license/status | cut -c 10,9,8,7,6,5,4,3,2,1")%><% end %><small-caps></a>
+		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA<small-caps>|<%=wan_ip%><% if wfm_lcs then %> | Active:<%=luci.sys.exec("cat /etc/opt/license/status")%><%else %> | Active:<%=luci.sys.exec("cat /etc/opt/license/status | cut -c 10,9,8,7,6,5,4,3,2,1")%><% end %><small-caps></a>
 		<div class="pull-right">
 		<%
 		-- calculate the number of unsaved changes
