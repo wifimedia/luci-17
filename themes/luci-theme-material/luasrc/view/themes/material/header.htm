@@ -42,8 +42,8 @@
 	
 	local has_license = fs.access("/etc/opt/first_time.txt")
 	local wfm_lcs = fs.access("/etc/opt/wfm_lcs")
-	local wan_ip= luci.util.exec("uci get network.wan.ipaddr")
-	
+	--local wan_ip= luci.util.exec("uci get network.wan.ipaddr")
+	local wan_ip= luci.util.exec("cat /tmp/ipaddr")
 	local c = tree
 	local i, r
 
