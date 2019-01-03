@@ -42,7 +42,11 @@
 	
 	local has_license = fs.access("/etc/opt/first_time.txt")
 	local wfm_lcs = fs.access("/etc/opt/wfm_lcs")
-	local wan_ip= luci.util.exec("cat /tmp/ipaddr")
+	--local wan_ip = luci.util.exec('source /lib/functions/network.sh ; if network_get_ipaddr addr "wan"; then echo "WAN: $addr" >/tmp/ipaddr; fi')
+	local wan_ip = luci.util.exec("cat /tmp/ipaddr")
+
+	local wifistatus = luci.util.exec("if [ -z `pidof hostapd` ];then echo 'Wireless Off' >/tmp/wirelessstatus;else echo 'Wireless On' >/tmp/wirelessstatus;fi")
+	local wifistatus = luci.util.exec("cat /tmp/wirelessstatus")
 	
 	local c = tree
 	local i, r
@@ -145,7 +149,7 @@
 <header>
 	<div class="container">
 		<span class="showSide"></span>
-		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA<font size="2.5">|<%=wan_ip%></font></a>
+		<a class="brand" href="http://wifimedia.vn">WIFIMEDIA<font size="2.5">|<%=wan_ip%><span class="label success"><%=wifistatus%></span></font></a>
 		<div class="pull-right">
 		<%
 		-- calculate the number of unsaved changes
