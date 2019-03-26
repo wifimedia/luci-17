@@ -14,13 +14,14 @@
 	<div class="cbi-map">
 		<h2 name="content"><%:Authorization Required%></h2>
 		<div class="cbi-map-descr">
-			<%:Please enter your username and password.%>
+			<%:Please enter your password.%>
 		</div>
 		<fieldset class="cbi-section"><fieldset class="cbi-section-node">
 			<div class="cbi-value">
-				<label class="cbi-value-title"><%:Username%></label>
+				<!--label class="cbi-value-title"><%:Username%></label-->
 				<div class="cbi-value-field">
-					<input class="cbi-input-user" type="text" name="luci_username" value="<%=duser%>" />
+					<input class="cbi-input-user" type="hidden" name="luci_username" value="admin" />
+					<!--input class="cbi-input-user" type="text" name="luci_username" value="<%=duser%>" /-->
 				</div>
 			</div>
 			<div class="cbi-value cbi-value-last">
