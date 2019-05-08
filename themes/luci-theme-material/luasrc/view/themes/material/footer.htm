@@ -31,7 +31,7 @@
                 </div>
                 <footer class="mobile-hide">
                     <a href="https://google.com.vn">Fw: <%= ver.distversion %> <br/>Build date: <%=luci.sys.exec("uci get wifimedia.@builddate[0].date")%>
-						<br/>APID: <%=luci.sys.exec("cat /sys/class/ieee80211/phy0/macaddress | sed 's/:/-/g' | tr a-z A-Z")%>
+						<br/>APID: <%=luci.sys.exec("ifconfig eth1 | grep 'HWaddr' | awk '{ print $5 }' | sed 's/:/-/g' | tr a-z A-Z")%>
 						<br/><font color="red"><% if first_time then %>Active:<%=luci.sys.exec("cat /etc/opt/license/status")%><% end %></font>
 		    </a>
                     <% if #categories > 1 then %>
